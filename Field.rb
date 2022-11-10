@@ -26,8 +26,6 @@ class Field
 
 
 
-
-
     def check_rows(sigil1, sigil2)
       @@array.each { |arr| @@winner = true if (arr.all?(sigil1) || arr.all?(sigil2)) }
     end
@@ -57,6 +55,13 @@ class Field
     end
 
 
+
+    def is_draw?
+      @@array.flatten.all?(String)
+    end
+
+
+
     def include_move?(move)
       @@array.flatten.include?(move)
     end
@@ -68,7 +73,3 @@ class Field
     end
     
 end
-
-#field = Field.new()
-#field.display_field
-#field.change_field(3, "o")
