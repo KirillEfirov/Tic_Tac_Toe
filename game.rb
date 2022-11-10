@@ -44,14 +44,15 @@ def game
         field.check_columns(player1.sigil, player2.sigil)
         field.check_diagonals(player1.sigil, player2.sigil)
 
-        break if Field.winner == true
+        puts "Player_1 is winner" if Field.winner == true
+        break if (Field.winner == true || field.is_draw?)
 
         puts "Choose position to move: "
         print "Player 2: "
         player2.move = gets.chomp.to_i
 
         while !field.include_move?(player2.move)
-            puts "Position is occupied. Choose another one..."
+            puts "Position is occupied or doesn't exist. Choose another one..."
             print "Player 2: "
             player2.move = gets.chomp.to_i
         end
@@ -62,8 +63,11 @@ def game
         field.check_columns(player1.sigil, player2.sigil)
         field.check_diagonals(player1.sigil, player2.sigil)
 
+        puts "Player_1 is winner" if Field.winner == true
         break if Field.winner == true
     end
+
+    puts "Draw" if field.is_draw?
 end
 
 game
