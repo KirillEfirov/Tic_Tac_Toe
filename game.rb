@@ -18,6 +18,11 @@ def game
     print "Choose the sigil to play: "
     player2.sigil = gets.chomp
 
+    while player1.sigil == player2.sigil
+      print "Choose another sigil to play: "
+      player2.sigil = gets.chomp
+    end
+
     puts "#{player1.name}(#{player1.sigil}) " + "vs" + " #{player2.name}(#{player2.sigil})"
     
     puts "\n\nLet's start!\n"
