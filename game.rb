@@ -4,37 +4,36 @@ require_relative 'Player.rb'
 def game
     field = Field.new
 
-    field.display_field
-
     puts
 
     player1 = Player.new
-    print "Hi Plsyer_1! What's your name? "
+    print "Hi Player_1! What's your name? "
     player1.name = gets.chomp
     print "Choose the sigil to play: "
     player1.sigil = gets.chomp
 
     player2 = Player.new
-    print "Hi Player_2! What's your name? "
+    print "\nHi Player_2! What's your name? "
     player2.name = gets.chomp
     print "Choose the sigil to play: "
     player2.sigil = gets.chomp
 
-    puts "#{player1.name} " + "your sigil is" + " #{player1.sigil}"
-    puts "#{player2.name} " + "your sigil is" + " #{player2.sigil}"
+    puts "#{player1.name}(#{player1.sigil}) " + "vs" + " #{player2.name}(#{player2.sigil})"
+    
+    puts "\n\nLet's start!\n"
 
-    puts "Let's start!"
+    field.display_field
 
     puts
 
     loop do
-        puts "Choose position to move: "
-        print "Player 1: "
+        puts "\nChoose position to move: "
+        print "#{player1.name}(#{player1.sigil}): "
         player1.move = gets.chomp.to_i
 
         while !field.include_move?(player1.move)
             puts "Position is occupied. Choose another one..."
-            print "Player 1: "
+            print "#{player1.name}(#{player1.sigil}): "
             player1.move = gets.chomp.to_i
         end
 
@@ -44,16 +43,16 @@ def game
         field.check_columns(player1.sigil, player2.sigil)
         field.check_diagonals(player1.sigil, player2.sigil)
 
-        puts "Player_1 is winner" if Field.winner == true
+        puts "\n******#{player1.name} is winner*****\n" if Field.winner == true
         break if (Field.winner == true || field.is_draw?)
 
-        puts "Choose position to move: "
-        print "Player 2: "
+        puts "\nChoose position to move: "
+        print "#{player2.name}(#{player2.sigil}): "
         player2.move = gets.chomp.to_i
 
         while !field.include_move?(player2.move)
             puts "Position is occupied or doesn't exist. Choose another one..."
-            print "Player 2: "
+            print "#{player2.name}(#{player2.sigil}): "
             player2.move = gets.chomp.to_i
         end
 
@@ -63,11 +62,27 @@ def game
         field.check_columns(player1.sigil, player2.sigil)
         field.check_diagonals(player1.sigil, player2.sigil)
 
-        puts "Player_1 is winner" if Field.winner == true
+        puts "\n*****#{player2.name} is winner*****\n" if Field.winner == true
         break if Field.winner == true
     end
 
-    puts "Draw" if field.is_draw?
+    puts "\n*****Draw*****\n" if field.is_draw?
 end
 
 game
+
+play = true
+
+while play
+    puts "1. New game"
+    puts "2. End"
+
+    choice = gets.chomp.to_i
+
+    case choice
+    when 1 
+        game
+    when 2
+        play = false
+    end
+end
