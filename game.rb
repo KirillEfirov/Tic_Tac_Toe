@@ -4,26 +4,18 @@ require_relative 'Player.rb'
 def game
     field = Field.new
 
-    puts
-
+    puts "Player 1:"
     player1 = Player.new
-    print "Hi Player_1! What's your name? "
-    player1.name = gets.chomp
-    print "Choose the sigil to play: "
-    player1.sigil = gets.chomp
 
+    puts "Player 2:"
     player2 = Player.new
-    print "\nHi Player_2! What's your name? "
-    player2.name = gets.chomp
-    print "Choose the sigil to play: "
-    player2.sigil = gets.chomp
 
     while player1.sigil == player2.sigil
       print "Choose another sigil to play: "
       player2.sigil = gets.chomp
     end
 
-    puts "#{player1.name}(#{player1.sigil}) " + "vs" + " #{player2.name}(#{player2.sigil})"
+    puts "\n\n#{player1.name}(#{player1.sigil}) vs #{player2.name}(#{player2.sigil})"
     
     puts "\n\nLet's start!\n"
 
@@ -72,22 +64,4 @@ def game
     end
 
     puts "\n*****Draw*****\n" if field.is_draw?
-end
-
-game
-
-play = true
-
-while play
-    puts "1. New game"
-    puts "2. End"
-
-    choice = gets.chomp.to_i
-
-    case choice
-    when 1 
-        game
-    when 2
-        play = false
-    end
 end
