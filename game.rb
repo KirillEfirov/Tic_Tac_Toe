@@ -40,8 +40,8 @@ def game
         field.check_columns(player1.sigil, player2.sigil)
         field.check_diagonals(player1.sigil, player2.sigil)
 
-        puts "\n******#{player1.name} is winner*****\n" if Field.winner == true
-        break if (Field.winner == true || field.is_draw?)
+        puts "\n******#{player1.name} is winner*****\n" if field.winner == true
+        break if (field.winner == true || field.is_draw?)
 
         puts "\nChoose position to move: "
         print "#{player2.name}(#{player2.sigil}): "
@@ -59,8 +59,8 @@ def game
         field.check_columns(player1.sigil, player2.sigil)
         field.check_diagonals(player1.sigil, player2.sigil)
 
-        puts "\n*****#{player2.name} is winner*****\n" if Field.winner == true
-        break if Field.winner == true
+        puts "\n*****#{player2.name} is winner*****\n" if field.winner == true
+        break if field.winner == true
     end
 
     puts "\n*****Draw*****\n" if field.is_draw?
