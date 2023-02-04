@@ -36,9 +36,7 @@ def game
 
         field.change_field(player1.move, player1.sigil)
         field.display_field
-        field.check_rows(player1.sigil, player2.sigil)
-        field.check_columns(player1.sigil, player2.sigil)
-        field.check_diagonals(player1.sigil, player2.sigil)
+        field.check_field(player1.sigil, player2.sigil)
 
         puts "\n******#{player1.name} is winner*****\n" if field.winner == true
         break if (field.winner == true || field.is_draw?)
@@ -55,9 +53,7 @@ def game
 
         field.change_field(player2.move, player2.sigil)
         field.display_field
-        field.check_rows(player1.sigil, player2.sigil)
-        field.check_columns(player1.sigil, player2.sigil)
-        field.check_diagonals(player1.sigil, player2.sigil)
+        field.check_field(player1.sigil, player2.sigil)
 
         puts "\n*****#{player2.name} is winner*****\n" if field.winner == true
         break if field.winner == true
